@@ -72,21 +72,28 @@ const Home: NextPage = () => {
   return (
     <div>
       <Filter onClickSort={onSort} onFilter={onFilter} />
-      {loading && <div className="flex w-full items-center justify-center">LOADING...</div>}
-      {animeList && (
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6">
-          {animeList.map((anime: Anime, index: number) => (
-            <AnimeCard key={index} onClick={() => openModal(anime)} data={anime} />
-          ))}
-        </div>
-      )}
-      {animeList?.length ? (
-        <div className="flex w-full items-center justify-center py-12">
-          <Pagination current={page} total={totalCount} pageSize={_limit} onChange={onPageChange} />
-        </div>
+
+      {loading ? (
+        <div className="flex w-full items-center justify-center">LOADING...</div>
       ) : (
-        <div className="flex w-full items-center justify-center py-12"> No data</div>
+        <>
+          {animeList?.length ? (
+            <>
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6">
+                {animeList.map((anime: Anime, index: number) => (
+                  <AnimeCard key={index} onClick={() => openModal(anime)} data={anime} />
+                ))}
+              </div>
+              <div className="flex w-full items-center justify-center py-12">
+                <Pagination current={page} total={totalCount} pageSize={_limit} onChange={onPageChange} />
+              </div>
+            </>
+          ) : (
+            <div className="flex w-full items-center justify-center py-12"> No data</div>
+          )}
+        </>
       )}
+
       <AnimeModal data={currentAnime as Anime} isOpen={showModal} closeModal={closeModal} />
     </div>
   );
