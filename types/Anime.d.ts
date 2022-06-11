@@ -1,4 +1,5 @@
 export interface Anime {
+  id: number;
   airing: boolean;
   end_date: string;
   episodes: number;
