@@ -1,0 +1,13 @@
+@import '~tailwindcss/base';
+@import '~tailwindcss/components';
+@import '~tailwindcss/utilities';
+
+@layer base {
+  :root {
+    --color-white: #ffffff;
+    --color-black: #000;
+    --color-grey: #dddddd;
+    --color-grey-100: #eeeeee;
+    --color-grey-200: #373737;
+  }
+}
